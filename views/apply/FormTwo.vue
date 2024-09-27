@@ -2,9 +2,6 @@
 import { Form } from 'vee-validate'
 import { FormModel } from '~~/types'
 
-
-
-const hcaptChaToken = ref<string>('')
 const form = reactive<FormModel>({
   studentId: '',
   name: '',
@@ -17,8 +14,7 @@ const form = reactive<FormModel>({
   direction: '',
 })
 
-const { siteKey } = useRuntimeConfig().public
-const { isLoading, handleSubmit } = useSubmitForm(form, hcaptChaToken)
+const { isLoading, handleSubmit } = useSubmitForm(form)
 
 const directionOptions = [
   {
@@ -38,8 +34,6 @@ const directionOptions = [
     value: 'mobile',
   },
 ]
-
-
 </script>
 
 <template>
@@ -105,7 +99,6 @@ const directionOptions = [
         :name="'applyReason'"
         :label="'说说你为什么想加入软件部'"
       />
-      
       <button
         :class="{ loading: isLoading }"
         :disabled="isLoading"
